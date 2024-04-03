@@ -4,6 +4,7 @@ Sliding Window INteraction Grammar
 ### Table of Contents
 - [Description](#description)
 - [How To Use](#how-to-use)
+- [Input Data](#input-data)
 - [Code Documentation](#code-documentation)
 - [Author Info](#author-info)
 
@@ -23,7 +24,26 @@ An interaction language model for protein-peptide and protein-protein interactio
 [Back To The Top](#read-me-template)
 
 ---
+## Input Data
+### pMHC Context
 
+For the NCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test
+
+| Epitope       | MHC         | Set           | Hit           | Sequence              |
+| ------------- | ----------- | ------------- | ------------- | --------------------- |       
+| AAALIIHHV     | HLA-A02:11  |    Train      |        1      | MAVMAPRTLVLLLSGALAL...|
+| AGFAGDDAPR    | HLA-A02:11  |    Test       |        0      | MAVMAPRTLVLLLSGALAL...|
+
+
+### Missense Mutation Pertubation Context
+
+The Mutated sequence, position of the mutation on the Mutated sequence, the Interactor sequence, and the label (Y2H_score) are necessary
+| Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | 
+| ------------------ | ------------------- | ------------- | ------------- |      
+| MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
+| MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |        1      | 
+
+[Back To The Top](#read-me-template)
 ## How To Use
 
 #### Dependencies
@@ -68,9 +88,9 @@ The function returns a list of score encodings strings that each represent a PPI
 	  <dt>padding_score: int</dt>
     		  <dd>Defines the number assigned to the padding. This number should be outside of the range of the scores given to AA pairs. default=9 </dd>
   </dl>
--------------------------------------------------------------------------------------------------------------------------------------------
+--------------
 
-#### get_kmers_str(*encoding_scores,k=3,shuffle=False, padding_score=9*)  
+#### get_kmers_str(*encoding_scores,k=7,shuffle=False, padding_score=9*)  
 Takes the encoding scores from get_window_encodings().  
   
 Customization includes setting size of the kmers (k), a shuffle option, and the integer defining the padding score.  
@@ -87,7 +107,8 @@ This function returns a list of lists of overlapping k-mers of specified size k,
   <dt>padding_score: int</dt>
     <dd>Defines the number assigned to the padding. This number should be outside of the range of the scores given to AA pairs. default=9 </dd>
 </dl>
--------------------------------------------------------------------------------------------------------------------------------------------
+--------------
+
 
 #### get_corpus(matrix, tokens_only=False)
 Takes in the k-mers created by the get_kmers_str() function.  
@@ -101,6 +122,6 @@ Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec 
     <dd>default=False</dd>
 </dl>
 
--------------------------------------------------------------------------------------------------------------------------------------------
+--------------
 
 ## Author Info
