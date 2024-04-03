@@ -3,8 +3,8 @@ Sliding Window INteraction Grammar
 
 ### Table of Contents
 - [Description](#description)
-- [How To Use](#how-to-use)
 - [Input Data](#input-data)
+- [How To Use](#how-to-use)
 - [Code Documentation](#code-documentation)
 - [Author Info](#author-info)
 
