@@ -21,7 +21,6 @@ An interaction language model for protein-peptide and protein-protein interactio
 - Missense mutation pertubations
   - Method to predict whether a protein-protein interaction would occur in the presence of a missense mutation.
 
-[Back To The Top](#read-me-template)
 
 ---
 ## Input Data
@@ -43,7 +42,6 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
 | MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |        1      | 
 
-[Back To The Top](#read-me-template)
 ## How To Use
 
 #### Dependencies
@@ -70,7 +68,6 @@ To run the cross prediction  on the class I datasets the following line of code 
     --max_depth 6 --learning_rate 0.9402316101150048
 ```
   
-[Back To The Top](#read-me-template)
 
 ## Code Documentation
 ### Language Generation:
