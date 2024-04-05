@@ -52,7 +52,7 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 - xgboost (v 1.6.1)
   
 ### Missense Mutation Pertubation context
-A vignette with a step by step explaination of the method has been provided.
+A vignette with a step by step explanation of the method has been provided [here](https://github.com/AlisaOmel/SWING/blob/main/Scripts/MutInt_Notebook.ipynb).
 
 ### pMHC context
 #### Nested Cross Validation (NCV)
@@ -101,7 +101,7 @@ This function returns a list of lists of overlapping k-mers of specified size k,
 <dl>
 	<dt>encoding_scores: a list of lists </dt> 
 		<dd>The list contains a list for each PPI. Each PPI list is composed of one string with the encodings </dd>
-  <dt>k</dt>: int
+  <dt>k: int</dt>
     <dd>Defines the size of the k-mers, default=7</dd>
   <dt>shuffle:</dt>
     <dd>Whether the k-mers are shuffled. Shuffling may prevent overfitting based on position of the k-mers. default=False</dd>
