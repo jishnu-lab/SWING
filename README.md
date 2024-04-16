@@ -58,7 +58,7 @@ A vignette with a step by step explanation of the method has been provided [here
 #### Standard Cross Validation (SCV)
 To run the nested cross validation  on the class I datasets the following line of code can be used:
 ```html
-    python3 scv.py --data_set ClassI_training_210.csv --output 'ClassI_NCV_210' --save_embeddings True
+    python3 scv.py --data_set ClassI_training_210.csv --output 'ClassI_SCV_210' --save_embeddings True
     --metric 'polarity' --classifier 'XGBoost' --loops 10 --k 7 --dim 583 --dm 0 --w 11 --min_count 1
     --alpha 0.02349139979145104 --epochs 13 --n_estimators 232 --max_depth 6
     --learning_rate 0.9402316101150048
