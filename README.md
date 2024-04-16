@@ -26,7 +26,7 @@ An interaction language model for protein-peptide and protein-protein interactio
 ## Input Data
 ### pMHC Context
 
-For the NCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test
+For the SCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test
 
 | Epitope       | MHC         | Set           | Hit           | Sequence              |
 | ------------- | ----------- | ------------- | ------------- | --------------------- |       
@@ -55,10 +55,10 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 A vignette with a step by step explanation of the method has been provided [here](https://github.com/AlisaOmel/SWING/blob/main/Scripts/MutInt_Notebook.ipynb).
 
 ### pMHC context
-#### Nested Cross Validation (NCV)
+#### Standard Cross Validation (SCV)
 To run the nested cross validation  on the class I datasets the following line of code can be used:
 ```html
-    python3 ncv.py --data_set ClassI_training_210.csv --output 'ClassI_NCV_210' --save_embeddings True
+    python3 scv.py --data_set ClassI_training_210.csv --output 'ClassI_NCV_210' --save_embeddings True
     --metric 'polarity' --classifier 'XGBoost' --loops 10 --k 7 --dim 583 --dm 0 --w 11 --min_count 1
     --alpha 0.02349139979145104 --epochs 13 --n_estimators 232 --max_depth 6
     --learning_rate 0.9402316101150048
@@ -91,7 +91,7 @@ The function returns a list of score encodings strings that each represent a PPI
   </dl>
 --------------
 
-#### get_kmers_str(*encoding_scores,k=7,shuffle=False, padding_score=9*)  
+#### get_kmers_str(*encoding_scores,k=7, padding_score=9*)  
 Takes the encoding scores from get_window_encodings().  
   
 Customization includes setting size of the kmers (k), a shuffle option, and the integer defining the padding score.  
