@@ -71,7 +71,7 @@ for i in range(len(AAs)):
         AA_pair_score = round(abs(AA_scores[AAs[i]]-AA_scores[AAs[j+i]])) # get the abs value of unique pairs' differences, rounded
         aa_score_dict[AA_pair] = AA_pair_score # add to dictionary
 
-def get_window_encodings(df, padding_score=9):# takes df (epitope/receptor sequences) and window (size of epitope).
+def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequences) and window (size of epitope).
     """
     Takes a pandas dataframe where each row represents a protein-protein/peptide-protein interaction.  
   
@@ -80,37 +80,37 @@ def get_window_encodings(df, padding_score=9):# takes df (epitope/receptor seque
     The function returns a list of score encodings strings that each represent a PPI. The ends of the encodings include padding from the sliding window process. These encodings will be broken into k-mers for the embedding model.
     """
     total_encodings = [] # final list of encodings
-    
+
     for i in (df.index): # iterate through all pairs
-        mut_window = df['Epitope'] . iloc[i]
-        interactor = df['Sequence'].iloc[i] 
-        
+        mut_window = df['Epitope'].iloc[i]
+        interactor = df['Sequence'].iloc[i]
+
         PPI_encoding = '' # for each PPI, dealing with strings
         its = 0 # for sliding window
-        for i in range(len(interactor)): # sliding mutant window across entire interactor
-            
+        for j in range(len(interactor)): # sliding mutant window across entire interactor
+
             window_scores = ''
-            for i in range(len(mut_window)): # at each positon of the interactor, align mutant window and find the score differences 
+            for k in range(len(mut_window)): # at each positon of the interactor, align epitope window and find the score differences 
                 try: # no directionality
-                    pair = mut_window[i]+interactor[i+its]
-                    
+                    pair = mut_window[k]+interactor[k+its]
+
                     try: # get the score
                         score = aa_score_dict[pair]
-                    
+
                     except: # no directionality- flip the AA pair if not in dictionary to get score
                         pair = pair[::-1] # reverse string
                         score = aa_score_dict[pair]
-                
+
                 except: # if not a pair, it is padding (have reached the end of the interactor)
                     pair = None
                     score = padding_score # padding
-                window_scores = window_scores + str(score) # string per mut window
-                
+                window_scores = window_scores + str(score) # string per epitope window
+                    
             its +=1 # sliding down to next position on the interactor
             PPI_encoding = PPI_encoding + str(window_scores) # final string per interaction
-            
+
         total_encodings.append(PPI_encoding) # all strings for all interactions
-        
+
     return total_encodings
 
 def get_kmers_str(encoding_scores, k=7, padding_score=9):
@@ -230,7 +230,7 @@ for i_its in range(inner_loop): # shuffle each tts of the 'data' set
     #Stratify the shuffled set
     skf = StratifiedKFold(n_splits=args.loops, shuffle=True, random_state=1)
     split_set = skf.split(data_shuffled['Vectors'], data_shuffled['Hit'])
-    
+
     for i, (train_index, test_index) in enumerate(split_set):
         print("Inner Loop #{0}".format(i))
         X_test = []
