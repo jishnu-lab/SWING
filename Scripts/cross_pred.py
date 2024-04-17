@@ -88,12 +88,12 @@ def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequ
 
         PPI_encoding = '' # for each PPI, dealing with strings
         its = 0 # for sliding window
-        for i in range(len(interactor)): # sliding mutant window across entire interactor
+        for j in range(len(interactor)): # sliding mutant window across entire interactor
 
             window_scores = ''
-            for i in range(len(mut_window)): # at each positon of the interactor, align epitope window and find the score differences 
+            for k in range(len(mut_window)): # at each positon of the interactor, align epitope window and find the score differences 
                 try: # no directionality
-                    pair = mut_window[i]+interactor[i+its]
+                    pair = mut_window[k]+interactor[k+its]
 
                     try: # get the score
                         score = aa_score_dict[pair]
@@ -106,7 +106,7 @@ def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequ
                     pair = None
                     score = padding_score # padding
                 window_scores = window_scores + str(score) # string per epitope window
-
+                    
             its +=1 # sliding down to next position on the interactor
             PPI_encoding = PPI_encoding + str(window_scores) # final string per interaction
 
