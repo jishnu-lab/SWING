@@ -64,12 +64,13 @@ if args.metric == 'hydrophobicity':
 
 AAs = list(AA_scores.keys())
 
-aa_score_dict = {} # key: AA pair, value: grantham score difference
-for i in range(len(AAs)):
-    for j in range(len(AAs)-i): # get unique pairs of the AAs
-        AA_pair = AAs[i]+AAs[j+i] 
-        AA_pair_score = round(abs(AA_scores[AAs[i]]-AA_scores[AAs[j+i]])) # get the abs value of unique pairs' differences, rounded
-        aa_score_dict[AA_pair] = AA_pair_score # add to dictionary
+aa_score_dict = {} 
+for i in range(len(AAs)): # create all pairs of AAs
+    for j in range(len(AAs)-i):
+        AA_pair = AAs[i]+AAs[j+i]
+        AA_pair_score = round(abs(AA_scores[AAs[i]]-AA_scores[AAs[j+i]])) # take rounded, absolute value of the difference of scores
+        aa_score_dict[AA_pair] = AA_pair_score # forward
+        aa_score_dict[AA_pair[::-1]] = AA_pair_score # and reverse
 
 def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequences) and window (size of epitope).
     """
@@ -93,13 +94,7 @@ def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequ
             for k in range(len(mut_window)): # at each positon of the interactor, align epitope window and find the score differences 
                 try: # no directionality
                     pair = mut_window[k]+interactor[k+its]
-
-                    try: # get the score
-                        score = aa_score_dict[pair]
-
-                    except: # no directionality- flip the AA pair if not in dictionary to get score
-                        pair = pair[::-1] # reverse string
-                        score = aa_score_dict[pair]
+                    score = aa_score_dict[pair]
 
                 except: # if not a pair, it is padding (have reached the end of the interactor)
                     pair = None
