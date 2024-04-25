@@ -6,7 +6,7 @@ Sliding Window INteraction Grammar
 - [Input Data](#input-data)
 - [How To Use](#how-to-use)
 - [Code Documentation](#code-documentation)
-- [Citation](#citation-info)
+- [Citation](#citation)
 
 ---
 
