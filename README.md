@@ -6,7 +6,7 @@ Sliding Window INteraction Grammar
 - [Input Data](#input-data)
 - [How To Use](#how-to-use)
 - [Code Documentation](#code-documentation)
-- [Author Info](#author-info)
+- [Citation](#citation-info)
 
 ---
 
@@ -125,4 +125,4 @@ Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec 
 
 --------------
 
-## Author Info
+## Citation 
