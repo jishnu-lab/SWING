@@ -4,7 +4,6 @@ import os
 import random
 random.seed(42)
 import gensim
-import optuna
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import sklearn
 from sklearn import metrics
