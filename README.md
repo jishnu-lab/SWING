@@ -50,6 +50,7 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 - sklearn (v 1.3.2)
 - gensim (v 4.0.0)
 - xgboost (v 1.6.1)
+- matplotlib (v 3.6.3)
   
 ### Missense Mutation Pertubation context
 A vignette with a step by step explanation of the method has been provided [here](https://github.com/AlisaOmel/SWING/blob/main/Scripts/MutInt_Notebook.ipynb).
