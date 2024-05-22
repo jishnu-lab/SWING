@@ -95,6 +95,8 @@ The hyperparameters for the Mixed Class model are:
 ```html
     --k 7 --dim 74 --dm 0 --w 12 --min_count 1 --alpha 0.03783042872771851 --epochs 10 --n_estimators 269 --max_depth 9 --learning_rate 0.6082359422582875
 ```
+Note ~45G of memory is needed to run the Class I model and ~30G for the Mixed Model.
+
 ## Code Documentation
 ### Language Generation:
 
