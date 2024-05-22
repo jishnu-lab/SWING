@@ -90,9 +90,10 @@ The hyperparameters for the Class II model are:
 The hyperparameters for the Mixed Class model are:
 ```html
     --k 7 --dim 74 --dm 0 --w 12 --min_count 1 --alpha 0.03783042872771851 --epochs 10 --n_estimators 269 --max_depth 9 --learning_rate 0.6082359422582875
+```
 ## Code Documentation
 ### Language Generation:
-```
+
 #### get_window_encodings(*df, padding_score=9*)  
   
 Takes a pandas dataframe where each row represents a protein-protein/peptide-protein interaction.  
