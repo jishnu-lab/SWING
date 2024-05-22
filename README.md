@@ -26,12 +26,21 @@ An interaction language model for protein-peptide and protein-protein interactio
 ## Input Data
 ### pMHC Context
 
-For the SCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test
+For the SCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test. For prediction of peptides with no known labels, use the nolabel_prediction.py file, the Set should be defiend as Train or Test, and the Hit should be left empty for Test Epitopes.
+To cross predict on new peptides/alleles, concatenate the training.csv for the model of your choice found in the Data folder with new data in the format as shown below. For the cross-prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new data). For prediction of peptides with no known labels, use the nolabel_prediction.py file, the 'Set' should be defiend as 'Train' or 'Test', and the 'Hit' column should be left empty for Test Epitopes. 
+Cross-prediction with known labels: (cross_pred.py)
 
 | Epitope       | MHC         | Set           | Hit           | Sequence              |
 | ------------- | ----------- | ------------- | ------------- | --------------------- |       
 | AAALIIHHV     | HLA-A02:11  |    Train      |        1      | MAVMAPRTLVLLLSGALAL...|
 | AGFAGDDAPR    | HLA-A02:11  |    Test       |        0      | MAVMAPRTLVLLLSGALAL...|
+
+Cross-prediction with no  known labels: (nolabel_prediction.py)
+
+| Epitope       | MHC         | Set           | Hit           | Sequence              |
+| ------------- | ----------- | ------------- | ------------- | --------------------- |       
+| AAALIIHHV     | HLA-A02:11  |    Train      |        1      | MAVMAPRTLVLLLSGALAL...|
+| AGFAGDDAPR    | HLA-A02:11  |    Test       |               | MAVMAPRTLVLLLSGALAL...|
 
 
 ### Missense Mutation Pertubation Context
@@ -47,13 +56,15 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 #### Dependencies
 - pandas (v 1.2.4)
 - numpy (v 1.20.1)
-- sklearn (v 1.3.2)
+- scikit-learn (v 1.3.2)
 - gensim (v 4.0.0)
 - xgboost (v 1.6.1)
-- matplotlib (v 3.6.3)
-  
+- matplotlib (v 3.3.4)
+- python-Levenshtein (v 0.25.1)
+
 ### Missense Mutation Pertubation context
 A vignette with a step by step explanation of the method has been provided [here](https://github.com/AlisaOmel/SWING/blob/main/Scripts/MutInt_Notebook.ipynb).
+
 
 ### pMHC context
 #### Standard Cross Validation (SCV)
@@ -72,11 +83,16 @@ To run the cross prediction  on the class I datasets the following line of code 
     --k 7 --dim 583 --dm 0 --w 11 --min_count 1 --alpha 0.02349139979145104 --epochs 13 --n_estimators 232
     --max_depth 6 --learning_rate 0.9402316101150048
 ```
-  
-
+The hyperparameters for the Class II model are:
+```html
+    --k 7 --dim 146 --dm 0 --w 12 --min_count 1 --alpha 0.03887032752085429 --epochs 13 --n_estimators 341 --max_depth 9 --learning_rate 0.6534638199102993
+```
+The hyperparameters for the Mixed Class model are:
+```html
+    --k 7 --dim 74 --dm 0 --w 12 --min_count 1 --alpha 0.03783042872771851 --epochs 10 --n_estimators 269 --max_depth 9 --learning_rate 0.6082359422582875
 ## Code Documentation
 ### Language Generation:
-
+```
 #### get_window_encodings(*df, padding_score=9*)  
   
 Takes a pandas dataframe where each row represents a protein-protein/peptide-protein interaction.  
@@ -126,4 +142,6 @@ Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec 
 
 --------------
 
-## Citation 
+## Citation
+Omelchenko, A. A., Siwek, J. C., Chhibbar, P., Arshad, S., Nazarali, I., Nazarali, K., ... & Das, J. (2024). Sliding Window INteraction Grammar (SWING): a generalized interaction language model for peptide and protein interactions. bioRxiv, 2024-05.
+ 
