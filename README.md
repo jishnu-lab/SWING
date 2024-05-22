@@ -26,16 +26,20 @@ An interaction language model for protein-peptide and protein-protein interactio
 ## Input Data
 ### pMHC Context
 
-For the SCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. For the cross-prediction, the Set should be defined as Train or Test. For prediction of peptides with no known labels, use the nolabel_prediction.py file, the Set should be defiend as Train or Test, and the Hit should be left empty for Test Epitopes.
+For the SCV, only the Epitope, MHC, Hit, and Sequence columns are necessary. 
+
+For the cross-prediction, the Set should be defined as Train or Test. For prediction of peptides with no known labels, use the nolabel_prediction.py file, the Set should be defiend as Train or Test, and the Hit should be left empty for Test Epitopes.
+
 To cross predict on new peptides/alleles, concatenate the training.csv for the model of your choice found in the Data folder with new data in the format as shown below. For the cross-prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new data). For prediction of peptides with no known labels, use the nolabel_prediction.py file, the 'Set' should be defiend as 'Train' or 'Test', and the 'Hit' column should be left empty for Test Epitopes. 
-Cross-prediction with known labels: (cross_pred.py)
+
+#### Cross-prediction with known labels: (cross_pred.py)
 
 | Epitope       | MHC         | Set           | Hit           | Sequence              |
 | ------------- | ----------- | ------------- | ------------- | --------------------- |       
 | AAALIIHHV     | HLA-A02:11  |    Train      |        1      | MAVMAPRTLVLLLSGALAL...|
 | AGFAGDDAPR    | HLA-A02:11  |    Test       |        0      | MAVMAPRTLVLLLSGALAL...|
 
-Cross-prediction with no  known labels: (nolabel_prediction.py)
+##### Cross-prediction with no  known labels: (nolabel_prediction.py)
 
 | Epitope       | MHC         | Set           | Hit           | Sequence              |
 | ------------- | ----------- | ------------- | ------------- | --------------------- |       
