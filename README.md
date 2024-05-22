@@ -68,7 +68,7 @@ A vignette with a step by step explanation of the method has been provided [here
 
 ### pMHC context
 #### Standard Cross Validation (SCV)
-To run the nested cross validation  on the class I datasets the following line of code can be used:
+To run the standard cross validation  on the Class I datasets the following line of code can be used:
 ```html
     python3 scv.py --data_set ClassI_training_210.csv --output 'ClassI_SCV_210' --save_embeddings True
     --metric 'polarity' --classifier 'XGBoost' --loops 10 --k 7 --dim 583 --dm 0 --w 11 --min_count 1
@@ -76,7 +76,7 @@ To run the nested cross validation  on the class I datasets the following line o
     --learning_rate 0.9402316101150048
 ```
 #### Cross Prediction
-To run the cross prediction  on the class I datasets the following line of code can be used:
+To run the cross prediction  on the Class I datasets the following line of code can be used:
 ```html
     python3 cross_pred.py --data_set ClassI_crosspred_HLA-A02:02_210.csv --output 'ClassI_HLA-A02:02_210'
     --save_embeddings True --metric 'polarity' --loops 10 --classifier 'XGBoost' --cross_pred_set 'HLA-A02:02'
