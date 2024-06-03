@@ -80,10 +80,10 @@ To run the standard cross validation  on the Class I datasets the following line
     --learning_rate 0.9402316101150048
 ```
 #### Cross Prediction
-To run the cross prediction  on the Class I datasets the following line of code can be used:
+To run the cross prediction on the Class I datasets the following line of code can be used:
 ```html
-    python3 cross_pred.py --data_set ClassI_crosspred_HLA-A02:02_210.csv --output 'ClassI_HLA-A02:02_210'
-    --save_embeddings True --metric 'polarity' --loops 10 --classifier 'XGBoost' --cross_pred_set 'HLA-A02:02'
+    python3 cross_pred.py --data_set ClassI_crossval_HLA-A32:01_210.csv --output 'ClassI_HLA-A32:01_210'
+    --save_embeddings True --metric 'polarity' --loops 10 --classifier 'XGBoost' --cross_pred_set 'HLA-A32:01'
     --k 7 --dim 583 --dm 0 --w 11 --min_count 1 --alpha 0.02349139979145104 --epochs 13 --n_estimators 232
     --max_depth 6 --learning_rate 0.9402316101150048
 ```
