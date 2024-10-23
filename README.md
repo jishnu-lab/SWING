@@ -49,7 +49,7 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 
 ### Missense Mutation Pertubation Context
 
-The Mutated sequence, position of the mutation on the Mutated sequence, the Interactor sequence, and the label (Y2H_score) are necessary
+The Mutated sequence, position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary
 | Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
@@ -67,7 +67,7 @@ The Mutated sequence, position of the mutation on the Mutated sequence, the Inte
 - python-Levenshtein (v 0.25.1)
 
 ### Missense Mutation Pertubation context
-A vignette with a step by step explanation of the method has been provided [here](https://github.com/AlisaOmel/SWING/blob/main/Scripts/MutInt_Notebook.ipynb).
+A vignette with a step by step explanation of the method has been provided [here](https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb).
 
 
 ### pMHC context
