@@ -1,10 +1,5 @@
-Input file with all labels and interactions for both mendelian and population varaints:
+Input file with all labels and interactions for both mendelian and population varaints and their corresponding wild type interactions:
 	Mutation_pertubation_model.csv
 
-Trained Doc2Vec embeddings:
-mendelian_vectors.pkl
-population_vectors.pkl
-
-Labels from the datasets:
-mendelian_labels.npy
-population_labels.npy
+Imput file mentioned above including trained Doc2Vec vectors for each interaction:
+	Mutation_perturbation_model_with_vectors.pkl
