@@ -49,7 +49,7 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 
 ### Missense Mutation Pertubation Context
 
-The Mutated sequence, position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary
+The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary
 | Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
