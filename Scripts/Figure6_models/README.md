@@ -4,7 +4,7 @@
 - SWING iLM (code in Scripts folder)
 - CNN iLM 
 - BERT iLM
-- Only iLE (interaction language encoding)
+- XGB iLE (interaction language encoding)
 - ConcatEmbed pLM
 - EmbedSum pLM
 - D2V pLM
@@ -14,6 +14,6 @@
 - SWING iLM (main Scripts folder)
 - CNN iLM 
 - BERT iLM
-- Only iLE (interaction language encoding)
+- XGB iLE (interaction language encoding)
 - ConcatEmbed pLM
 - EmbedSum pLM
