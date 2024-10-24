@@ -1,7 +1,7 @@
 # This folder contains example code for the other pLM and iLM models mentioned in Figure 6.
 
 ## MutInt SCV Models:
-- SWING iLM (main Scripts folder)
+- SWING iLM (code in Scripts folder)
 - CNN iLM 
 - BERT iLM
 - Only iLE (interaction language encoding)
