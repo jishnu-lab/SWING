@@ -51,14 +51,14 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 
 #### General Use (SWING_MutInt_Notebook.ipynb and normal training)
 The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary.
-| Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | 
+| Mutated Sequence (unless WT) | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
 | MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |        1      | 
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
 To cross predict on new missense mutations, concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with new data in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for test mutations. 
-| Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | Set	   |
+| Mutated Sequence (unless WT) | Interactor Sequence | Position      | Y2H_score     | Set	   |
 | ------------------ | ------------------- | ------------- | ------------- | ------------- |     
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |       0       | Train         |
 | MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |               | Test          |
