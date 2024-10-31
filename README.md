@@ -61,7 +61,7 @@ To cross predict on new missense mutations, concatenate the Mutation_pertubratio
 | Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA     | Y2H_score     | Set	   |
 | ------------------ | ------------------- | ------------- | ------------- | ------------- | ------------- | ------------- |  
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|       R       |      60       |     Q     | 0 | Train | 
-| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|       G       |      137      |     S     | 1 | Test  |  
+| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|       G       |      137      |     S     |   | Test  |  
 
 ## How To Use
 
