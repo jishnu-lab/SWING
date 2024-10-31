@@ -49,11 +49,19 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 
 ### Missense Mutation Pertubation Context
 
-The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary
+#### General Use (SWING_MutInt_Notebook.ipynb and normal training)
+The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary.
 | Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |        0      | 
 | MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |        1      | 
+
+#### Prediction with no known labels (MutInt_nolabel_prediction.py)
+The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary, as well as a column 'Set' to distinguish the no label predictions.
+| Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | Set	   |
+| ------------------ | ------------------- | ------------- | ------------- | ------------- |     
+| MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |       0       | Train         |
+| MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |      n/a      | NoLabPred     |
 
 ## How To Use
 
@@ -68,7 +76,6 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 
 ### Missense Mutation Pertubation context
 A vignette with a step by step explanation of the method has been provided [here](https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb).
-
 
 ### pMHC context
 #### Standard Cross Validation (SCV)
