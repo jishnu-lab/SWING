@@ -53,12 +53,13 @@ if args.metric == 'hydrophobicity':
 AAs = list(AA_scores.keys())
 
 aa_score_dict = {} # key: AA pair, value: grantham score difference
-for i in range(len(AAs)):
-    for j in range(len(AAs)-i): # get unique pairs of the AAs
-        AA_pair = AAs[i]+AAs[j+i] 
-        AA_pair_score = round(abs(AA_scores[AAs[i]]-AA_scores[AAs[j+i]])) # get the abs value of unique pairs' differences, rounded
-        aa_score_dict[AA_pair] = AA_pair_score # add to dictionary
-
+for i in range(len(AAs)): # create all pairs of AAs
+    for j in range(len(AAs)-i):
+        AA_pair = AAs[i]+AAs[j+i]
+        AA_pair_score = round(abs(AA_scores[AAs[i]]-AA_scores[AAs[j+i]])) # take rounded, absolute value of the difference of scores
+        aa_score_dict[AA_pair] = AA_pair_score # forward
+        aa_score_dict[AA_pair[::-1]] = AA_pair_score # and reverse
+            
 def get_window_encodings(df): # takes df (mut/int sequences and mutation position) and window k (k AA's on each side of the mutation position)
     """
     Takes a pandas dataframe where each row represents a protein-protein/peptide-protein interaction.  
@@ -71,17 +72,17 @@ def get_window_encodings(df): # takes df (mut/int sequences and mutation positio
     total_encodings = [] # final list of encodings
     
     for i in (df.index): # iterate through all pairs
-        mut_window = df['Epitope'] . iloc[i]
+        mut_window = df['Epitope'].iloc[i]
         interactor = df['Sequence'].iloc[i] 
         
         PPI_encoding = '' # for each PPI, dealing with strings
         its = 0 # for sliding window
-        for i in range(len(interactor)): # sliding mutant window across entire interactor
+        for j in range(len(interactor)): # sliding mutant window across entire interactor
             
             window_scores = ''
-            for i in range(len(mut_window)): # at each positon of the interactor, align mutant window and find the score differences 
+            for k in range(len(mut_window)): # at each positon of the interactor, align mutant window and find the score differences 
                 try: # no directionality
-                    pair = mut_window[i]+interactor[i+its]
+                    pair = mut_window[k]+interactor[k+its]
                     
                     try: # get the score
                         score = aa_score_dict[pair]
