@@ -75,7 +75,13 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 - python-Levenshtein (v 0.25.1)
 
 ### Missense Mutation Pertubation context
+#### Standard Cross Validation (SCV)
 A vignette with a step by step explanation of the method has been provided [here](https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb).
+
+#### No Label Prediction
+To run no label prediction on mutation data, the following line of code can be used:
+python3 MutInt_nolabel_prediction.py --output 'no_label_preds' --nolabel_pred_set 'data.csv' --k 7 --metric 'polarity' --padding_score 9 --w 6 --dm 1 --dim 128 --epochs 52 --min_count 1 --alpha 0.08711 --save_embeddings True --n_estimators 375 --max_depth 6 --learning_rate 0.08966
+Note: Only mutant data should be used for no label prediction (nolabel_pred_set), not wild type.
 
 ### pMHC context
 #### Standard Cross Validation (SCV)
