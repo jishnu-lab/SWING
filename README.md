@@ -57,11 +57,11 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 | MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |        1      | 
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
-The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary, as well as a column 'Set' to distinguish the no label predictions.
+To cross predict on new missense mutations, concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with new data in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for test mutations. 
 | Mutated Sequence   | Interactor Sequence | Position      | Y2H_score     | Set	   |
 | ------------------ | ------------------- | ------------- | ------------- | ------------- |     
 | MTMSKEAVTFKDVAVV...| MADEQEIMCKLESIKEI...|    357        |       0       | Train         |
-| MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |      n/a      | NoLabPred     |
+| MWTLVSWVALTAGLVA...| MASPRTRKVLKEVRVQD...|    9          |               | Test          |
 
 ## How To Use
 
