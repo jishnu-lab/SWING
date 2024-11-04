@@ -57,7 +57,9 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 | MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    137        |        1      | 
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
-To cross predict on new missense mutations, concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with new data in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations, as well as columns for the amino acids before and after mutation. 
+To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with the no label data** in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations, as well as columns for the amino acids before and after mutation. 
+Note: Only mutant data should be added for no label prediction (nolabel_pred_set), not wild type. Corresponding type interactions will be added in the background.
+
 | Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA | Y2H_score | Set |
 | ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ |  
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    R    |   60    |  Q      | 0     |  Train | 
@@ -83,8 +85,6 @@ To run no label prediction on mutation data, the following line of code can be u
 ```html
 python3 MutInt_nolabel_prediction.py --data_set 'data.csv' --output 'no_label_preds' --nolabel_pred_set 'test_set_name' --k 7 --L 1 --metric 'polarity' --padding_score 9 --w 6 --dm 1 --dim 128 --epochs 52 --min_count 1 --alpha 0.08711 --save_embeddings True --n_estimators 375 --max_depth 6 --learning_rate 0.08966
 ```
-Note: Only mutant data should be used for no label prediction (nolabel_pred_set), not wild type.
-
 ### pMHC context
 #### Standard Cross Validation (SCV)
 To run the standard cross validation  on the Class I datasets the following line of code can be used:
