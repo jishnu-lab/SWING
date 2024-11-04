@@ -50,7 +50,7 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 ### Missense Mutation Pertubation Context
 
 #### General Use (SWING_MutInt_Notebook.ipynb and normal training)
-The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are the bare minimum necessary to run SWING. We highly recomend you set up your traning data as shown in the SWING_MutInt_Notebook.ipynb [https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb].
+The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are the bare minimum necessary to run SWING. We highly recomend you set up your traning data as shown in the [SWING_MutInt_Notebook.ipynb](https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb).
 | Mutated Sequence (unless WT) | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    60         |        0      | 
