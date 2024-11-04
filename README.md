@@ -50,7 +50,7 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 ### Missense Mutation Pertubation Context
 
 #### General Use (SWING_MutInt_Notebook.ipynb and normal training)
-The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are necessary.
+The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are the bare minimum necessary to run SWING. We highly recomend you set up your traning data as shown in the SWING_MutInt_Notebook.ipynb [https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb].
 | Mutated Sequence (unless WT) | Interactor Sequence | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    60         |        0      | 
@@ -58,10 +58,10 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
 To cross predict on new missense mutations, concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with new data in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations, as well as columns for the amino acids before and after mutation. 
-| Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA     | Y2H_score     | Set	   |
-| ------------------ | ------------------- | ------------- | ------------- | ------------- | ------------- | ------------- |  
-| MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|       R       |      60       |     Q         | 0             |         Train | 
-| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|       G       |      137      |     S         |               |         Test  |  
+| Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA | Y2H_score | Set |
+| ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ |  
+| MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    R    |   60    |  Q      | 0     |  Train | 
+| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    G    |   137   |  S      |       |  Test  |  
 
 ## How To Use
 
