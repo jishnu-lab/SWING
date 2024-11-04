@@ -57,13 +57,13 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 | MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    137        |        1      | 
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
-To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with the no label data** in the format as shown below. For the no label prediction, the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations, as well as columns for the amino acids before and after mutation. 
+To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with the no label data** in the format as shown below. For the no label prediction, 1. the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations 2. columns for the amino acids before and after mutation should be added, and 3. A 'Mutant' or 'WildType' label should be added to the column 'Type'.
 Note: Only mutant data should be added for no label prediction (nolabel_pred_set), not wild type. Corresponding type interactions will be added in the background.
 
-| Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA | Y2H_score | Set |
-| ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ |  
-| MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    R    |   60    |  Q      | 0     |  Train | 
-| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    G    |   137   |  S      |       |  Test  |  
+| Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA | Y2H_score | Set | Type |
+| ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ | -------- |
+| MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    R    |   60    |  Q      | 0     |  Train | WildType |
+| MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    G    |   137   |  S      |       |  Test  |  Mutant  |
 
 ## How To Use
 
