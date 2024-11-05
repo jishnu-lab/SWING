@@ -13,7 +13,6 @@
 ## pMHC Cross Prediction Models:
 - SWING iLM (main Scripts folder)
 - CNN iLM 
-- BERT iLM
 - XGB iLE (interaction language encoding)
 - CEmbed pLM
 - ESum pLM
