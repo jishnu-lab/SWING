@@ -5,8 +5,8 @@
 - CNN iLM 
 - BERT iLM
 - XGB iLE (interaction language encoding)
-- ConcatEmbed pLM
-- EmbedSum pLM
+- CEmbed pLM
+- ESum pLM
 - D2V pLM
 - ESM1 pLM
 
@@ -15,5 +15,5 @@
 - CNN iLM 
 - BERT iLM
 - XGB iLE (interaction language encoding)
-- ConcatEmbed pLM
-- EmbedSum pLM
+- CEmbed pLM
+- ESum pLM
