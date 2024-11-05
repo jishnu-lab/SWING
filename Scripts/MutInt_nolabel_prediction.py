@@ -121,9 +121,29 @@ n_estimators = args.n_estimators
 max_depth = args.max_depth
 learning_rate = args.learning_rate
 
-# load in data
+# load in data (should be mutant only!)
 df = pd.read_csv(args.data_set)
-df = df.sample(frac = 1, random_state = 1).reset_index()
+
+# add in wild types
+test_muts = df[df['Set']=='Test'] # subset the test mutants
+wt_seqs = []
+for i in test_muts.index: # for each mutant
+    # change the mutant sequence back to wild type
+    mut_seq = test_muts.loc[i]['Mutated_Seq (unless WT)']
+    before_aa = test_muts.loc[i]['Before_AA']
+    after_aa = test_muts.loc[i]['After_AA']
+    position = test_muts.loc[i]['Position'] - 1 # POSITION IS ONE INDEXED
+    test_muts.loc[i]['Mutated_Seq (unless WT)']
+    if mut_seq[position] == after_aa: # check if after_AA is really at the position
+        wt_seqs.append(mut_seq[:position]+after_aa+mut_seq[position+1:]) # make the wt sequence
+    else:
+        raise ValueError('Position Index (1 indexed) does not match Before_AA')
+
+# add WT nolabels to df and shuffle
+test_wts = test_muts.copy()
+test_wts['Mutated_Seq (unless WT)']=wt_seqs
+test_wts['Type']='WildType'
+df = pd.concat([df, test_wts]).sample(frac = 1, random_state = 1).reset_index(drop=True) # shuffle
 
 # encode and k-merize
 window_encodings = get_window_encodings(df, window_k=L, pos_colname='Position', mutseq_colname='Mutated_Seq (unless WT)', intseq_colname='Interactor_Seq', aa_score_dict=aa_score_dict, padding_score=padding_score)
@@ -148,29 +168,28 @@ if args.save_embeddings==True:
 tr_vecs = []
 predict_vecs = []
 for i in range(len(all_vecs)):
-    if i in set(df[df['Set']=='Test'].index):
+    if i in set(df[(df['Set']=='Test') & (df['Type']=='Mutant')].index): # just mutants
         predict_vecs.append(all_vecs[i])
-    else:
+    elif i in set(df[df['Set']!='Test'].index): # training set
         tr_vecs.append(all_vecs[i])
+    else: # ignoring no label wild types
+        pass 
 
 tr_y = df[df['Set']!='Test'].Y2H_score.values.reshape(-1,1)
 
-# train xbg on all the 'data'
+# train xbg on all the data
 xgb_cl = XGBClassifier(n_estimators=n_estimators,max_depth=max_depth,learning_rate=learning_rate)
-print(len(tr_vecs))
-print(len(tr_y))
-
 xgb_cl.fit(tr_vecs,tr_y)
     
 y_hat = xgb_cl.predict(predict_vecs)
 y_hat_proba = xgb_cl.predict_proba(predict_vecs)[::,1]
 
 denovo_prediction = pd.DataFrame()
-denovo_prediction['Mutated_Seq'] = df[df['Set']=='Test']['Mutated_Seq (unless WT)']
-denovo_prediction['Interactor_Seq'] = df[df['Set']=='Test']['Interactor_Seq']
-denovo_prediction['Before_AA'] = df[df['Set']=='Test']['Before_AA']
-denovo_prediction['Position'] = df[df['Set']=='Test']['Position']
-denovo_prediction['After_AA'] = df[df['Set']=='Test']['After_AA']
+denovo_prediction['Mutated_Seq'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Mutated_Seq (unless WT)']
+denovo_prediction['Interactor_Seq'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Interactor_Seq']
+denovo_prediction['Before_AA'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Before_AA']
+denovo_prediction['Position'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Position']
+denovo_prediction['After_AA'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['After_AA']
 
 denovo_prediction['Predicted Y'] = y_hat
 denovo_prediction['Predicted Probabilities Y'] = y_hat_proba 
