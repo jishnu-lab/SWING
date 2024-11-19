@@ -133,7 +133,6 @@ for i in test_muts.index: # for each mutant
     before_aa = test_muts.loc[i]['Before_AA']
     after_aa = test_muts.loc[i]['After_AA']
     position = test_muts.loc[i]['Position'] - 1 # POSITION IS ONE INDEXED
-    test_muts.loc[i]['Mutated_Seq (unless WT)']
     if mut_seq[position] == after_aa: # check if after_AA is really at the position
         wt_seqs.append(mut_seq[:position]+after_aa+mut_seq[position+1:]) # make the wt sequence
     else:
