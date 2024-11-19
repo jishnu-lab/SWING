@@ -137,7 +137,7 @@ for i in test_muts.index: # for each mutant
     if mut_seq[position] == after_aa: # check if after_AA is really at the position
         wt_seqs.append(mut_seq[:position]+after_aa+mut_seq[position+1:]) # make the wt sequence
     else:
-        raise ValueError('Position Index (1 indexed) does not match Before_AA')
+        raise ValueError('Position Index (1 indexed) does not match Before_AA at index '+str(i))
 
 # add WT nolabels to df and shuffle
 test_wts = test_muts.copy()
@@ -190,6 +190,7 @@ denovo_prediction['Interactor_Seq'] = df[(df['Set']=='Test') & (df['Type']=='Mut
 denovo_prediction['Before_AA'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Before_AA']
 denovo_prediction['Position'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['Position']
 denovo_prediction['After_AA'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['After_AA']
+denovo_prediction['MutationID'] = df[(df['Set']=='Test') & (df['Type']=='Mutant')]['MutationID']
 
 denovo_prediction['Predicted Y'] = y_hat
 denovo_prediction['Predicted Probabilities Y'] = y_hat_proba 
