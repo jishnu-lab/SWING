@@ -121,7 +121,7 @@ n_estimators = args.n_estimators
 max_depth = args.max_depth
 learning_rate = args.learning_rate
 
-# load in data (should be mutant only!)
+# load in data (should be training + test mutant only!)
 df = pd.read_csv(args.data_set)
 
 # add in wild types
