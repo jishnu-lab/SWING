@@ -51,7 +51,7 @@ To cross predict on new peptides/alleles, concatenate the training.csv for the m
 
 #### General Use (SWING_MutInt_Notebook.ipynb and normal training)
 The Mutated sequence (unless WT), position of the mutation on the Mutated sequence (1-indexed, python adjustment in code), the Interactor sequence, and the label (Y2H_score) are the bare minimum necessary to run SWING. We highly recomend you set up your traning data as shown in the [SWING_MutInt_Notebook.ipynb](https://github.com/jishnu-lab/SWING/blob/main/Scripts/SWING_MutInt_Notebook.ipynb).
-| Mutated Sequence (unless WT) | Interactor Sequence | Position      | Y2H_score     | 
+| Mutated_Seq (unless WT) | Interactor_Seq | Position      | Y2H_score     | 
 | ------------------ | ------------------- | ------------- | ------------- |      
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    60         |        0      | 
 | MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    137        |        1      | 
@@ -61,7 +61,7 @@ To cross predict on new missense mutations, **concatenate the Mutation_pertubrat
 
 Note: Only mutant data should be added for no label prediction (nolabel_pred_set), not wild type. Corresponding type interactions will be added in the background.
 
-| Mutated Sequence (unless WT) | Interactor Sequence | Before_AA | Position | After_AA | Y2H_score | Set | Type | MutationID | 
+| Mutated_Seq (unless WT) | Interactor_Seq | Before_AA | Position | After_AA | Y2H_score | Set | Type | MutationID | 
 | ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ | -------- | - |
 | MALDGPEQMELEEGKA...| MTSSYSSSSCPLGCTMA...|    R    |   60    |  Q      | 0     |  Train | WildType |   |
 | MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    G    |   137   |  S      |       |  Test  |  Mutant  | 1 |
