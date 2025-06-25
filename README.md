@@ -59,7 +59,7 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
 To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with the no label data** in the format as shown below. For the no label prediction, 1. the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations 2. columns for the amino acids before and after mutation should be added, 3. a 'Mutant' or 'WildType' label should be added to the column 'Type', and 4. some unique 'MutationID' should be given to the mutations to easily map them back to the original dataframe. 
 
-Note: Only mutant data should be added for no label prediction (nolabel_pred_set), not wild type. Corresponding type interactions will be added in the background.
+Note: Only mutant data should be added for no label prediction, not wild type. Corresponding wild type interactions will be added in the background.
 
 | Mutated_Seq (unless WT) | Interactor_Seq | Before_AA | Position | After_AA | Y2H_score | Set | Type | MutationID | 
 | ------------------ | ------------------- | ------- | ------- | ------- | ----- | ------ | -------- | - |
@@ -84,7 +84,7 @@ A vignette with a step by step explanation of the method has been provided [here
 #### No Label Prediction
 To run no label prediction on mutation data, the following line of code can be used:
 ```html
-python3 MutInt_nolabel_prediction.py --data_set 'data.csv' --output 'no_label_preds' --nolabel_pred_set 'test_set_name' --k 7 --L 1 --metric 'polarity' --padding_score 9 --w 6 --dm 1 --dim 128 --epochs 52 --min_count 1 --alpha 0.08711 --save_embeddings True --n_estimators 375 --max_depth 6 --learning_rate 0.08966
+python3 MutInt_nolabel_prediction.py --data_set 'data.csv' --output 'MutInt_nolabel_preds' --k 7 --L 1 --metric 'polarity' --padding_score 9 --w 6 --dm 1 --dim 128 --epochs 52 --min_count 1 --alpha 0.08711 --save_embeddings True --n_estimators 375 --max_depth 6 --learning_rate 0.08966
 ```
 ### pMHC context
 #### Standard Cross Validation (SCV)
