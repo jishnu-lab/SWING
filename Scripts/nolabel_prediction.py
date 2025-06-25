@@ -109,6 +109,10 @@ def get_kmers_str(encoding_scores,k=7,shuffle=False, padding_score=9):
     return kmers
 
 def get_corpus(matrix, tokens_only=False): # turns each ppi into a d2v tagged document
+    """
+    Takes in the k-mers created by the get_kmers_str() function.  
+    Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec model.
+    """
     for i in range(len(matrix)):
         yield gensim.models.doc2vec.TaggedDocument(matrix[i],[i])
 
