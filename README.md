@@ -57,7 +57,7 @@ The Mutated sequence (unless WT), position of the mutation on the Mutated sequen
 | MARLALSPVPSHWMVA...| MDNKKRLAYAIIQFLHD...|    137        |        1      | 
 
 #### Prediction with no known labels (MutInt_nolabel_prediction.py)
-To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv or the data of your choice found in the Data folder with the no label data** in the format as shown below. For the no label prediction, 1. the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations 2. columns for the amino acids before and after mutation should be added, 3. a 'Mutant' or 'WildType' label should be added to the column 'Type', and 4. some unique 'MutationID' should be given to the mutations to easily map them back to the original dataframe. 
+To cross predict on new missense mutations, **concatenate the Mutation_pertubration_model.csv found in the Data folder or the data of your choice with the no label data** in the format as shown below. For the no label prediction, 1. the 'Set' column should be defined as 'Train' (from training dataset) or 'Test' (new, unlabeled data) and the Y2H_score should be left empty for 'Test' mutations 2. columns for the amino acids before and after mutation should be added, 3. a 'Mutant' or 'WildType' label should be added to the column 'Type', and 4. some unique 'MutationID' should be given to the mutations to easily map them back to the original dataframe. 
 
 Note: Only mutant data should be added for no label prediction, not wild type. Corresponding wild type interactions will be added in the background.
 
