@@ -74,70 +74,58 @@ for i in range(len(AAs)): # create all pairs of AAs
 def get_window_encodings(df, padding_score=9): # takes df (epitope/receptor sequences) and window (size of epitope).
     """
     Takes a pandas dataframe where each row represents a protein-protein/peptide-protein interaction.  
-  
     Customization includes setting the interactor protein and the peptide window. In the pMHC context, the epitope defines the peptide window. In the missense mutation pertubation context, the window_k parameter defines the size of the window and the mutation defines the position. Additionally, the scale used to calculate the score can be altered. If the scale is changed the padding_score may need to be adjusted.  
-  
     The function returns a list of score encodings strings that each represent a PPI. The ends of the encodings include padding from the sliding window process. These encodings will be broken into k-mers for the embedding model.
     """
-    total_encodings = [] # final list of encodings
-
-    for i in (df.index): # iterate through all pairs
-        mut_window = df['Epitope'].iloc[i]
-        interactor = df['Sequence'].iloc[i]
-
-        PPI_encoding = '' # for each PPI, dealing with strings
-        its = 0 # for sliding window
-        for j in range(len(interactor)): # sliding mutant window across entire interactor
-
-            window_scores = ''
-            for k in range(len(mut_window)): # at each positon of the interactor, align epitope window and find the score differences 
-                try: # no directionality
+    total_encodings = [] # Master list of encodings
+    for i in (df.index): # Iterate through protein pairs
+        mut_window = df['Epitope'].iloc[i] # Epitope to slide
+        interactor = df['Sequence'].iloc[i] # Interacting sequence
+        PPI_encoding = '' # For each PPI
+        its = 0 # Tracks sliding window position
+        for j in range(len(interactor)): # For the entire length of the interactor
+            window_scores = ''  # Saves the scores between window-interactor at the 'its' position
+            for k in range(len(mut_window)): # At each positon of the interactor ('its'), align epitope and find the score differences
+                try: # If 'its' is at the end of the interactor, the window is hanging off end (padding)
                     pair = mut_window[k]+interactor[k+its]
                     score = aa_score_dict[pair]
-
-                except: # if not a pair, it is padding (have reached the end of the interactor)
+                except: # If not a pair, its padding (end of interactor)
                     pair = None
-                    score = padding_score # padding
-                window_scores = window_scores + str(score) # string per epitope window
-                    
-            its +=1 # sliding down to next position on the interactor
-            PPI_encoding = PPI_encoding + str(window_scores) # final string per interaction
-
-        total_encodings.append(PPI_encoding) # all strings for all interactions
+                    score = padding_score # Padding score is 9
+                window_scores = window_scores + str(score) # Add score to running string
+            its +=1 # Slide down a position on the interactor
+            PPI_encoding = PPI_encoding + str(window_scores) # Add to final string for interaction
+        total_encodings.append(PPI_encoding) # Add to list for all interactions
+    return total_encodings # List of encodings for each PPI
 
     return total_encodings
 
-def get_kmers_str(encoding_scores, k=7, padding_score=9):
+def get_kmers_str(encoding_scores,k=7,shuffle=False, padding_score=9):
     """
     Takes the encoding scores from get_window_encodings().  
-  
     Customization includes setting size of the kmers (k), a shuffle option, and the integer defining the padding score.  
-  
     This function returns a list of lists of overlapping k-mers of specified size k, removing k-mers of only padding. Each list of k-mers are specific to each of the PPIs. This output is compatible with gensims
     """
-    
     padding = {str(padding_score)}
-    for i in range(k):
-        padding.add(str(padding_score)*(i+1))
-    kmers = []
-    for ppi_score in encoding_scores:
-        int_kmers = []
-        for j in range(len(ppi_score)): # keep padding in k-mers?
-            kmer = ppi_score[j:j+k]
-            if kmer in padding:
-                pass
-            else:
-                int_kmers.append(kmer) # overlapping k-mers
-        kmers.append(int_kmers)
+    for i in range(k): # Makes a set of padding scores that will be removed from the final k-mers 
+        padding.add(str(padding_score)*(i+1)) # {'9','99','999'...}
+    kmers = [] # Master list of k-mers
+    for ppi_score in encoding_scores: # For each PPI encoding
+        int_kmers = [] # K-mers specific to PPI
+        for j in range(len(ppi_score)-k): # Iterate over the PPI encoding
+            kmer = ppi_score[j:j+k] # Slice k-mers and sliding over
+            if kmer not in padding: # If K-mer is just padding, don't add it
+                int_kmers.append(kmer) # Keep non-padding k-mers  
+        if shuffle: # shuffle option
+            random.shuffle(int_kmers)
+        kmers.append(int_kmers) # Append k-mers to master list
     return kmers
 
 def get_corpus(matrix, tokens_only=False): # turns each ppi into a d2v tagged document
     """
     Takes in the k-mers created by the get_kmers_str() function.  
-
     Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec model.
     """
-
     for i in range(len(matrix)):
         yield gensim.models.doc2vec.TaggedDocument(matrix[i],[i])
 
