@@ -17,8 +17,7 @@ from tqdm import tqdm
 
 parser = argparse.ArgumentParser('No label prediction of missense mutation perturbation on specific PPIs.')
 parser.add_argument('--data_set',required=True,help='data to train with',default="../Data/MutInt_Model/Mutation_perturbation_model.csv")
-parser.add_argument('--output',required=True,help='output prefix',default='nolabel_preds')
-parser.add_argument('--nolabel_pred_set',required=True,help='The prefix for the cross pred dataset',default='nolabel_preds')
+parser.add_argument('--output',required=True,help='output prefix',default='MutInt_nolabel_preds')
 #Language parameters
 parser.add_argument('--k',default=7,type=int,help='size of words (kmer) for the window encoding to be fragmented into')
 parser.add_argument('--L',default=1,type=int,help='the number of amino acids considered around the mutation for the sliding window')
@@ -105,7 +104,6 @@ def get_corpus(matrix, tokens_only=False):
         yield gensim.models.doc2vec.TaggedDocument(matrix[i],[i]) # Create a tagged document
 
 output = args.output
-nolabel_pred_set = args.nolabel_pred_set
 
 k = args.k
 L = args.L
@@ -195,4 +193,4 @@ denovo_prediction['MutationID'] = df[(df['Set']=='Test') & (df['Type']=='Mutant'
 denovo_prediction['Predicted Y'] = y_hat
 denovo_prediction['Predicted Probabilities Y'] = y_hat_proba 
 denovo_prediction = denovo_prediction.sort_values(by='Predicted Probabilities Y', ascending=False)
-denovo_prediction.to_csv('output/{0}/{1}_predictions_only.csv'.format(nolabel_pred_set,output), index=False)
+denovo_prediction.to_csv('output/nolabel_pred/{0}_predictions_only.csv'.format(output), index=False)
