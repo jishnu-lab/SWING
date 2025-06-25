@@ -105,6 +105,7 @@ def get_corpus(matrix, tokens_only=False):
         yield gensim.models.doc2vec.TaggedDocument(matrix[i],[i]) # Create a tagged document
 
 output = args.output
+nolabel_pred_set = args.nolabel_pred_set
 
 k = args.k
 L = args.L
@@ -194,4 +195,4 @@ denovo_prediction['MutationID'] = df[(df['Set']=='Test') & (df['Type']=='Mutant'
 denovo_prediction['Predicted Y'] = y_hat
 denovo_prediction['Predicted Probabilities Y'] = y_hat_proba 
 denovo_prediction = denovo_prediction.sort_values(by='Predicted Probabilities Y', ascending=False)
-denovo_prediction.to_csv('output/nolabel_pred/{0}_predictions_only.csv'.format(output), index=False)
+denovo_prediction.to_csv('output/{0}/{1}_predictions_only.csv'.format(nolabel_pred_set,output), index=False)
