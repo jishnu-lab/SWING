@@ -56,7 +56,7 @@ def get_kmers_embsum(encoding_scores, k=7):
     for ppi_score in tqdm(encoding_scores): # For each PPI encoding
         int_kmers = [] # K-mers specific to PPI
         score_list = ppi_score.split()
-        for j in range(len(ppi_score)): # Iterate over the PPI encoding
+        for j in range(len(score_list)-k+1): # Iterate over the PPI encoding
             kmer = " ".join(score_list[j:j+k]) # make k-mers and sliding over
             int_kmers.append(kmer) # Keep non-padding k-mers  
         kmers.append(int_kmers) # Append k-mers to master list
