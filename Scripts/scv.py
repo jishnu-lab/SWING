@@ -112,7 +112,7 @@ def get_kmers_str(encoding_scores,k=7,shuffle=False, padding_score=9):
     kmers = [] # Master list of k-mers
     for ppi_score in encoding_scores: # For each PPI encoding
         int_kmers = [] # K-mers specific to PPI
-        for j in range(len(ppi_score)-k): # Iterate over the PPI encoding
+        for j in range(len(ppi_score)-k+1): # Iterate over the PPI encoding
             kmer = ppi_score[j:j+k] # Slice k-mers and sliding over
             if kmer not in padding: # If K-mer is just padding, don't add it
                 int_kmers.append(kmer) # Keep non-padding k-mers  
