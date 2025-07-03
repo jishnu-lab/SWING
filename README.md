@@ -72,9 +72,9 @@ Note: Only mutant data should be added for no label prediction, not wild type. C
 - pandas (v 1.2.4)
 - numpy (v 1.20.1)
 - scikit-learn (v 1.3.2)
-- gensim (v 4.0.0)
+- gensim (v 4.2.0)
 - xgboost (v 1.6.1)
-- matplotlib (v 3.3.4)
+- matplotlib (v 3.6.3)
 - python-Levenshtein (v 0.25.1)
 
 ### Missense Mutation Pertubation context
