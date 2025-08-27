@@ -166,5 +166,5 @@ Returns a Doc2Vec TaggedDocuments entities for each PPI to be used in a Doc2Vec 
 --------------
 
 ## Citation
-Omelchenko, A. A., Siwek, J. C., Chhibbar, P., Arshad, S., Nazarali, I., Nazarali, K., ... & Das, J. (2024). Sliding Window INteraction Grammar (SWING): a generalized interaction language model for peptide and protein interactions. bioRxiv, 2024-05.
+Siwek, J. C., Omelchenko, A. A., Chhibbar, P., Arshad, S., Rosengart, A., Nazarali, I., ... & Das, J. (2025). Sliding Window Interaction Grammar (SWING): a generalized interaction language model for peptide and protein interactions. Nature Methods, 1-13.
  
